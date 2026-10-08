@@ -1,6 +1,17 @@
 ---
 import { Font } from "astro:assets";
 import "../styles/global.css";
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const {
+  title = "App Waktu Solat Malaysia | Malaysia Prayer Time App",
+  description = "Malaysia Prayer Time helps you find accurate prayer times, the qibla direction, and more.",
+} = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, "https://waktusolat.app");
 ---
 
 <!doctype html>
@@ -9,16 +20,13 @@ import "../styles/global.css";
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#171719" />
-    <meta
-      name="description"
-      content="Malaysia Prayer Time helps you find accurate prayer times, the qibla direction, and more."
-    />
-    <link rel="canonical" href="https://waktusolat.app/" />
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="alternate icon" href="/favicon.ico" />
     <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <Font cssVariable="--font-poppins" />
-    <title>App Waktu Solat Malaysia | Malaysia Prayer Time App</title>
+    <title>{title}</title>
     <script is:inline>
       const savedTheme = localStorage.getItem("theme");
       const setting =
