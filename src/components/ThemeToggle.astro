@@ -1,0 +1,88 @@
+---
+import { Monitor, Moon, Sun } from "@lucide/astro";
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  class="cursor-pointer rounded-sm transition-colors hover:text-(--accent)"
+  aria-label="Theme: System. Switch to Light"
+  title="Theme: System"
+>
+  <Monitor
+    size={25}
+    stroke-width={1.8}
+    class="theme-icon theme-icon-system"
+    aria-hidden="true"
+  />
+  <Sun
+    size={25}
+    stroke-width={1.8}
+    class="theme-icon theme-icon-light"
+    aria-hidden="true"
+  />
+  <Moon
+    size={25}
+    stroke-width={1.8}
+    class="theme-icon theme-icon-dark"
+    aria-hidden="true"
+  />
+</button>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>(
+    "[data-theme-toggle]",
+  );
+  const colorScheme = window.matchMedia("(prefers-color-scheme: dark)");
+  type ThemeSetting = "system" | "light" | "dark";
+
+  const getThemeSetting = (): ThemeSetting => {
+    const setting = document.documentElement.dataset.themeSetting;
+    return setting === "light" || setting === "dark" ? setting : "system";
+  };
+
+  const applyThemeSetting = (setting: ThemeSetting) => {
+    const nextSetting: Record<ThemeSetting, ThemeSetting> = {
+      system: "light",
+      light: "dark",
+      dark: "system",
+    };
+    const label: Record<ThemeSetting, string> = {
+      system: "System",
+      light: "Light",
+      dark: "Dark",
+    };
+    const resolvedTheme =
+      setting === "system" ? (colorScheme.matches ? "dark" : "light") : setting;
+
+    document.documentElement.dataset.themeSetting = setting;
+    document.documentElement.dataset.theme = resolvedTheme;
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute(
+        "content",
+        resolvedTheme === "dark" ? "#171719" : "#f8fafc",
+      );
+    button?.setAttribute(
+      "aria-label",
+      `Theme: ${label[setting]}. Switch to ${label[nextSetting[setting]]}`,
+    );
+    button?.setAttribute("title", `Theme: ${label[setting]}`);
+  };
+
+  applyThemeSetting(getThemeSetting());
+  button?.addEventListener("click", () => {
+    const currentSetting = getThemeSetting();
+    const nextSetting =
+      currentSetting === "system"
+        ? "light"
+        : currentSetting === "light"
+          ? "dark"
+          : "system";
+    applyThemeSetting(nextSetting);
+    localStorage.setItem("theme", nextSetting);
+  });
+  colorScheme.addEventListener("change", () => {
+    if (getThemeSetting() === "system") applyThemeSetting("system");
+  });
+</script>
