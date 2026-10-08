@@ -1,0 +1,473 @@
+---
+import { Image } from "astro:assets";
+import {
+  BookOpen,
+  ChevronRight,
+  Code2,
+  Globe,
+  Heart,
+  MessageCircle,
+  Monitor,
+  Moon,
+  RefreshCw,
+  Sparkles,
+  Sun,
+  Zap,
+} from "@lucide/astro";
+import ReviewCard from "./ReviewCard.astro";
+import logo from "../assets/app-logo.svg";
+import phoneDark from "../assets/home/phone-dark-portrait.png";
+import phoneLight from "../assets/home/phone-light-portrait.png";
+import playBadge from "../assets/home/google-play-badge.png";
+import izzahAvatar from "../assets/home/playstore-reviews/pp_izzah.jpg";
+import amiruddinAvatar from "../assets/home/playstore-reviews/pp_amiruddin.png";
+import abdullahAvatar from "../assets/home/playstore-reviews/pp_abdullah.jpg";
+import noorAvatar from "../assets/home/playstore-reviews/pp_noor_azizi.png";
+import sitiAvatar from "../assets/home/playstore-reviews/pp_s.png";
+import rizalAvatar from "../assets/home/playstore-reviews/pp_rizal.jpg";
+
+const features = [
+  {
+    icon: Sparkles,
+    heading: "Sleek Design.",
+    text: "Designed from the the ground up to be simple and pleasing to the eye.",
+  },
+  {
+    icon: Heart,
+    heading: "Reliable.",
+    text: "Data is taken from the official local authority",
+  },
+  {
+    icon: BookOpen,
+    heading: "We are open source.",
+    text: "Found a bug or want to contribute to the project? Visit our GitHub!",
+  },
+  {
+    icon: RefreshCw,
+    heading: "Continuous support.",
+    text: "We are always working on improving the app and adding new features.",
+  },
+];
+---
+
+<main class="overflow-hidden">
+  <section
+    class="relative min-h-[875px] pb-28 lg:min-h-[895px] lg:pb-0"
+    aria-labelledby="hero-title"
+  >
+    <div
+      class="hero-glow pointer-events-none absolute inset-0"
+      aria-hidden="true"
+    >
+    </div>
+    <div
+      class="hero-grid pointer-events-none absolute inset-0"
+      aria-hidden="true"
+    >
+    </div>
+
+    <div
+      class="absolute right-6 top-4 z-10 flex items-center gap-6 text-(--text-primary) lg:right-8"
+    >
+      <span title="English" aria-label="Language: English"
+        ><Globe size={25} stroke-width={1.8} aria-hidden="true" /></span
+      >
+      <button
+        type="button"
+        data-theme-toggle
+        class="cursor-pointer rounded-sm transition-colors hover:text-(--accent)"
+        aria-label="Theme: System. Switch to Light"
+        title="Theme: System"
+      >
+        <Monitor
+          size={25}
+          stroke-width={1.8}
+          class="theme-icon theme-icon-system"
+          aria-hidden="true"
+        />
+        <Sun
+          size={25}
+          stroke-width={1.8}
+          class="theme-icon theme-icon-light"
+          aria-hidden="true"
+        />
+        <Moon
+          size={25}
+          stroke-width={1.8}
+          class="theme-icon theme-icon-dark"
+          aria-hidden="true"
+        />
+      </button>
+    </div>
+
+    <div class="relative mx-auto max-w-[1152px] px-6 pt-12 lg:px-0 lg:pt-24">
+      <a href="/" class="inline-block rounded-sm" aria-label="Waktu Solat home">
+        <img
+          src={logo.src}
+          width="80"
+          height="82"
+          alt="Waktu Solat"
+          class="brand-logo h-20 w-20"
+        />
+      </a>
+
+      <div
+        class="mt-16 grid items-start gap-10 lg:-mt-[70px] lg:grid-cols-[minmax(0,1fr)_360px] lg:gap-12"
+      >
+        <div class="max-w-[680px] lg:pt-[130px]">
+          <div
+            class="mb-9 flex flex-wrap items-center gap-x-6 gap-y-2 text-sm font-semibold"
+          >
+            <a
+              href="https://waktusolat.app/en/changelog"
+              class="rounded-full border border-cyan-800/40 bg-cyan-900/20 px-3 py-1 text-(--accent) hover:bg-cyan-900/30"
+              >What's New</a
+            >
+            <a
+              href="https://waktusolat.app/en/changelog"
+              class="inline-flex items-center gap-3 text-[var(--text-primary)] hover:text-[var(--accent)]"
+              >Latest Version: <ChevronRight
+                size={18}
+                stroke-width={1.75}
+                aria-hidden="true"
+              /></a
+            >
+          </div>
+
+          <h1
+            id="hero-title"
+            class="text-[clamp(2.3rem,5vw,3.75rem)] font-medium leading-[1.12] tracking-[-0.045em] text-(--text-primary)"
+          >
+            Malaysia Prayer Time
+          </h1>
+          <p
+            class="mt-5 max-w-[670px] text-base leading-8 font-normal text-(--text-primary) sm:text-lg sm:leading-8"
+          >
+            An essential apps for Muslim in Malaysia. Help you determine the
+            latest prayer times, finding qibla and more.
+          </p>
+
+          <div class="mt-8 flex flex-wrap items-center gap-x-7 gap-y-3">
+            <a
+              href={"https://play.google.com/store/apps/details?id=live.iqfareez.waktusolatmalaysia&utm_source=waktusolat-site"}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Get Waktu Solat on Google Play"
+              class="-ml-[10px] inline-flex rounded-sm sm:hover:opacity-85"
+            >
+              <Image
+                src={playBadge}
+                alt="Get it on Google Play"
+                width={250}
+                class="h-auto w-[220px] sm:w-[250px]"
+                loading="eager"
+              />
+            </a>
+            <a
+              href="https://api.waktusolat.app"
+              target="_blank"
+              rel="noopener noreferrer"
+              class="group inline-flex items-center gap-2.5 text-lg font-medium text-[var(--text-primary)] hover:opacity-85"
+            >
+              <span
+                class="flex h-10 w-10 items-center justify-center rounded-full bg-(--text-primary) text-(--page-bg)"
+                ><Zap
+                  size={27}
+                  fill="currentColor"
+                  stroke-width={1.5}
+                  class="transition-transform group-hover:-rotate-12"
+                  aria-hidden="true"
+                /></span
+              >
+              REST API
+            </a>
+          </div>
+          <p class="mt-4 text-sm text-(--text-subtle)">
+            *Sorry, this app is not available for iOS yet.
+          </p>
+        </div>
+
+        <div
+          data-phone-card
+          class="relative z-10 mx-auto mb-8 w-[330px] max-w-full perspective-[600px] transition-transform duration-200 ease-out xl:mb-0 xl:w-[360px] xl:hover:z-50 xl:hover:scale-[1.15] motion-reduce:transition-none motion-reduce:xl:hover:scale-100"
+        >
+          <div
+            data-phone-tilt
+            class="max-sm:transform-[rotateX(50deg)] drop-shadow-2xl transition-transform duration-200 ease-out motion-reduce:transition-none"
+          >
+            <Image
+              src={phoneDark}
+              alt="Waktu Solat app showing prayer times"
+              width={360}
+              class="phone-dark h-auto w-full"
+              loading="eager"
+              fetchpriority="high"
+            />
+            <Image
+              src={phoneLight}
+              alt="Waktu Solat app showing prayer times"
+              width={360}
+              class="phone-light h-auto w-full"
+              loading="eager"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section
+    class="relative mx-auto max-w-[1216px] px-6 pb-28 pt-8 lg:px-0 lg:pb-48 lg:pt-6"
+    aria-labelledby="features-title"
+  >
+    <div class="text-center">
+      <p class="text-sm font-semibold text-(--accent)">Everything you need</p>
+      <h2
+        id="features-title"
+        class="mt-3 text-3xl font-bold leading-tight tracking-[-0.035em] text-(--text-primary) md:text-4xl"
+      >
+        "Hurry to the prayer. Hurry to success"
+      </h2>
+      <p class="mt-6 text-base text-(--text-muted)">
+        Feature packed while keeping the design clean and minimal
+      </p>
+    </div>
+    <div class="mt-20 grid gap-8 sm:grid-cols-2 lg:grid-cols-4 lg:gap-9">
+      {
+        features.map(({ icon: Icon, heading, text }) => (
+          <div class="flex items-start gap-3 text-base leading-7 text-(--text-muted)">
+            <Icon
+              size={20}
+              fill={heading === "Reliable." ? "currentColor" : "none"}
+              stroke-width={2.4}
+              class="mt-1 flex-none text-(--accent)"
+              aria-hidden="true"
+            />
+            <p>
+              <strong class="font-bold text-(--text-primary)">{heading}</strong>{" "}
+              {text}
+            </p>
+          </div>
+        ))
+      }
+    </div>
+  </section>
+
+  <section
+    class="relative pb-28 pt-8 lg:pb-44 lg:pt-0"
+    aria-labelledby="reviews-title"
+  >
+    <div
+      class="reviews-glow pointer-events-none absolute inset-0"
+      aria-hidden="true"
+    >
+    </div>
+    <div class="relative mx-auto max-w-[1216px] px-6 lg:px-0">
+      <div class="mx-auto max-w-[620px] text-center">
+        <p class="text-sm font-semibold text-(--accent)">Reviews</p>
+        <h2
+          id="reviews-title"
+          class="mt-3 text-3xl font-bold leading-tight tracking-[-0.035em] text-(--text-primary) md:text-4xl"
+        >
+          What users are saying about the app
+        </h2>
+      </div>
+
+      <div
+        class="mt-20 grid gap-6 lg:grid-cols-[1fr_2.1fr_1fr] lg:items-start lg:gap-8"
+      >
+        <div class="order-2 lg:order-1">
+          <ReviewCard
+            quote="Satisfied using this app. Accurate as per azan from nearby mosque and surau. Thank you developer. Keep up the good work.. May you be duly rewarded"
+            name="Amiruddin Khwaja Kamaluddin"
+            avatar={amiruddinAvatar}
+          />
+        </div>
+        <div class="order-1 grid gap-6 lg:order-2 lg:gap-8">
+          <ReviewCard
+            prominent
+            quote="the internal design is pretty sejuk mata memandang this app can definetely upgrade where user can read quran and zikir daily so they dont have to install so many apps well done!!! "
+            name="izzah yusra"
+            avatar={izzahAvatar}
+          />
+          <div class="grid gap-6 sm:grid-cols-2 lg:gap-8">
+            <ReviewCard
+              quote="Clean Fluttery goodness! Hats off to the dev. Maybe JAKIM should learn a thing or two from you."
+              name="Abdullah Mubarak"
+              avatar={abdullahAvatar}
+            />
+            <ReviewCard
+              quote="suara azan yg sedap dan waktu yg tepat...ok mantap"
+              name="Noor Azizi"
+              avatar={noorAvatar}
+            />
+          </div>
+        </div>
+        <div class="order-3 grid gap-6 lg:gap-8">
+          <ReviewCard
+            quote="Terbaik waktu solat yg tepat"
+            name="Siti Aishah"
+            avatar={sitiAvatar}
+          />
+          <ReviewCard
+            quote="Best apps for people who are looking for straight forward solat time. Not fussy like some of app that load unnecessary thing every time you on it"
+            name="Mohd Rizal"
+            avatar={rizalAvatar}
+          />
+        </div>
+      </div>
+      <p class="mt-12 text-center text-xs text-(--text-subtle)">
+        *Reviews are from Google Play Store
+      </p>
+    </div>
+  </section>
+</main>
+
+<footer class="px-6 pb-8 pt-16 text-center">
+  <nav
+    class="flex items-center justify-center gap-10 text-(--text-muted)"
+    aria-label="Social links"
+  >
+    <a
+      href="https://twitter.com/iqfareez"
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="X (Twitter)"
+      class="hover:text-(--accent)"
+      ><MessageCircle
+        size={20}
+        fill="currentColor"
+        stroke-width={1.5}
+        aria-hidden="true"
+      /></a
+    >
+    <a
+      href={"https://github.com/mptwaktusolat/app_waktu_solat_malaysia"}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label="GitHub"
+      class="hover:text-(--accent)"
+      ><Code2 size={20} stroke-width={2} aria-hidden="true" /></a
+    >
+  </nav>
+  <p class="mt-10 text-xs text-(--text-subtle)">
+    © 2026 <a
+      href="https://iqfareez.com"
+      target="_blank"
+      rel="noopener noreferrer"
+      class="hover:text-(--accent)">Muhammad Fareez</a
+    >. All rights reserved.
+  </p>
+</footer>
+
+<script>
+  const button = document.querySelector<HTMLButtonElement>(
+    "[data-theme-toggle]",
+  );
+  const colorScheme = window.matchMedia("(prefers-color-scheme: dark)");
+  type ThemeSetting = "system" | "light" | "dark";
+  const getThemeSetting = (): ThemeSetting => {
+    const setting = document.documentElement.dataset.themeSetting;
+    return setting === "light" || setting === "dark" ? setting : "system";
+  };
+  const applyThemeSetting = (setting: ThemeSetting) => {
+    const nextSetting: Record<ThemeSetting, ThemeSetting> = {
+      system: "light",
+      light: "dark",
+      dark: "system",
+    };
+    const label: Record<ThemeSetting, string> = {
+      system: "System",
+      light: "Light",
+      dark: "Dark",
+    };
+    const resolvedTheme =
+      setting === "system" ? (colorScheme.matches ? "dark" : "light") : setting;
+
+    document.documentElement.dataset.themeSetting = setting;
+    document.documentElement.dataset.theme = resolvedTheme;
+    document
+      .querySelector('meta[name="theme-color"]')
+      ?.setAttribute(
+        "content",
+        resolvedTheme === "dark" ? "#171719" : "#f8fafc",
+      );
+    button?.setAttribute(
+      "aria-label",
+      `Theme: ${label[setting]}. Switch to ${label[nextSetting[setting]]}`,
+    );
+    button?.setAttribute("title", `Theme: ${label[setting]}`);
+  };
+
+  applyThemeSetting(getThemeSetting());
+  button?.addEventListener("click", () => {
+    const currentSetting = getThemeSetting();
+    const nextSetting =
+      currentSetting === "system"
+        ? "light"
+        : currentSetting === "light"
+          ? "dark"
+          : "system";
+    applyThemeSetting(nextSetting);
+    localStorage.setItem("theme", nextSetting);
+  });
+  colorScheme.addEventListener("change", () => {
+    if (getThemeSetting() === "system") applyThemeSetting("system");
+  });
+
+  const phoneCard = document.querySelector<HTMLElement>("[data-phone-card]");
+  const phoneTilt = document.querySelector<HTMLElement>("[data-phone-tilt]");
+
+  if (phoneCard && phoneTilt) {
+    const reducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    const resetTilt = () => {
+      if (reducedMotion.matches) {
+        phoneTilt.style.transform = "none";
+      } else if (window.innerWidth < 640) {
+        phoneTilt.style.transform = "rotateX(50deg)";
+      } else {
+        phoneTilt.style.transform = "rotateX(0deg) rotateY(0deg)";
+      }
+    };
+
+    phoneCard.addEventListener("mousemove", (event) => {
+      if (window.innerWidth < 1280 || reducedMotion.matches) return;
+
+      const { width, height, x, y } = phoneCard.getBoundingClientRect();
+      const mouseX = Math.abs(event.clientX - x);
+      const mouseY = Math.abs(event.clientY - y);
+      const rotateX = 15 - (mouseY / height) * 30;
+      const rotateY = -15 + (mouseX / width) * 30;
+
+      phoneTilt.style.transform = `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`;
+    });
+
+    phoneCard.addEventListener("mouseleave", () => {
+      if (window.innerWidth >= 1280) resetTilt();
+    });
+
+    window.addEventListener(
+      "scroll",
+      () => {
+        if (window.innerWidth >= 640 || reducedMotion.matches) return;
+
+        const scrollY = -window.scrollY;
+        const windowHeight = window.innerHeight;
+        const elementBottom = phoneCard.getBoundingClientRect().bottom;
+        const triggerPoint = windowHeight - windowHeight * 0.9;
+
+        if (elementBottom > triggerPoint) {
+          const value = Math.abs(scrollY / windowHeight) * 90 - 30;
+          const rotate = Math.abs(Math.min(Math.max(value, -40), 0));
+          phoneTilt.style.transform = `rotateX(${rotate}deg)`;
+        }
+      },
+      { passive: true },
+    );
+
+    window.addEventListener("resize", resetTilt);
+    reducedMotion.addEventListener("change", resetTilt);
+    resetTilt();
+  }
+</script>

@@ -1,0 +1,56 @@
+@import "tailwindcss";
+
+@theme inline {
+  --font-sans: var(--font-poppins);
+}
+
+:root {
+  color-scheme: dark;
+  --page-bg: #171719;
+  --card-bg: #272729;
+  --text-primary: #e5e8ef;
+  --text-muted: #b7bbc6;
+  --text-subtle: #70829f;
+  --accent: #12c5db;
+  --grid: rgb(255 255 255 / 4%);
+}
+
+:root[data-theme="light"] {
+  color-scheme: light;
+  --page-bg: #f8fafc;
+  --card-bg: #ffffff;
+  --text-primary: #1e293b;
+  --text-muted: #475569;
+  --text-subtle: #64748b;
+  --accent: #008891;
+  --grid: rgb(15 23 42 / 5%);
+}
+
+html { scroll-behavior: smooth; }
+body { margin: 0; background: var(--page-bg); color: var(--text-primary); font-family: var(--font-poppins), sans-serif; }
+a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+
+.hero-grid {
+  background-image: linear-gradient(to right, var(--grid) 1px, transparent 1px), linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
+  background-size: 200px 200px;
+  mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
+}
+
+.hero-glow {
+  background: radial-gradient(ellipse at 65% 38%, rgb(75 103 169 / 19%), transparent 44%), radial-gradient(ellipse at 91% 37%, rgb(73 62 157 / 20%), transparent 37%);
+}
+
+.reviews-glow {
+  background: radial-gradient(ellipse at 22% 49%, rgb(120 68 119 / 26%), transparent 41%), radial-gradient(ellipse at 73% 47%, rgb(80 58 119 / 23%), transparent 42%);
+}
+
+:root[data-theme="light"] .hero-glow { opacity: .45; }
+:root[data-theme="light"] .reviews-glow { opacity: .2; }
+:root:not([data-theme="light"]) .brand-logo { filter: brightness(0) saturate(100%) invert(85%) sepia(19%) saturate(551%) hue-rotate(143deg) brightness(96%) contrast(90%); }
+:root[data-theme="light"] .phone-dark { display: none; }
+:root:not([data-theme="light"]) .phone-light { display: none; }
+
+.theme-icon { display: none; }
+:root[data-theme-setting="system"] .theme-icon-system,
+:root[data-theme-setting="light"] .theme-icon-light,
+:root[data-theme-setting="dark"] .theme-icon-dark { display: block; }

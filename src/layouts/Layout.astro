@@ -1,23 +1,45 @@
-<!doctype html>
-<html lang="en">
-	<head>
-		<meta charset="utf-8" />
-		<meta name="viewport" content="width=device-width" />
-		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-		<link rel="icon" href="/favicon.ico" />
-		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
-	</head>
-	<body>
-		<slot />
-	</body>
-</html>
+---
+import { Font } from "astro:assets";
+import "../styles/global.css";
+---
 
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>
+<!doctype html>
+<html lang="en" data-theme="dark" data-theme-setting="system">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#171719" />
+    <meta
+      name="description"
+      content="Malaysia Prayer Time helps you find accurate prayer times, the qibla direction, and more."
+    />
+    <link rel="canonical" href="https://waktusolat.app/" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="alternate icon" href="/favicon.ico" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+    <Font cssVariable="--font-poppins" />
+    <title>App Waktu Solat Malaysia | Malaysia Prayer Time App</title>
+    <script is:inline>
+      const savedTheme = localStorage.getItem("theme");
+      const setting =
+        savedTheme === "light" || savedTheme === "dark" ? savedTheme : "system";
+      const resolvedTheme =
+        setting === "system"
+          ? matchMedia("(prefers-color-scheme: dark)").matches
+            ? "dark"
+            : "light"
+          : setting;
+      document.documentElement.dataset.themeSetting = setting;
+      document.documentElement.dataset.theme = resolvedTheme;
+      document
+        .querySelector('meta[name="theme-color"]')
+        ?.setAttribute(
+          "content",
+          resolvedTheme === "dark" ? "#171719" : "#f8fafc",
+        );
+    </script>
+  </head>
+  <body>
+    <slot />
+  </body>
+</html>
