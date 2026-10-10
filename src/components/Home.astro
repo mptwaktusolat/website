@@ -3,14 +3,13 @@ import { Image } from "astro:assets";
 import {
   BookOpen,
   ChevronRight,
-  Code2,
   Globe,
   Heart,
-  MessageCircle,
   RefreshCw,
   Sparkles,
   Zap,
 } from "@lucide/astro";
+import Footer from "./Footer.astro";
 import ReviewCard from "./ReviewCard.astro";
 import ThemeToggle from "./ThemeToggle.astro";
 import logo from "../assets/app-logo.svg";
@@ -296,42 +295,7 @@ const features = [
   </section>
 </main>
 
-<footer class="px-6 pb-8 pt-16 text-center">
-  <nav
-    class="flex items-center justify-center gap-10 text-(--text-muted)"
-    aria-label="Social links"
-  >
-    <a
-      href="https://twitter.com/iqfareez"
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="X (Twitter)"
-      class="hover:text-(--accent)"
-      ><MessageCircle
-        size={20}
-        fill="currentColor"
-        stroke-width={1.5}
-        aria-hidden="true"
-      /></a
-    >
-    <a
-      href={"https://github.com/mptwaktusolat/app_waktu_solat_malaysia"}
-      target="_blank"
-      rel="noopener noreferrer"
-      aria-label="GitHub"
-      class="hover:text-(--accent)"
-      ><Code2 size={20} stroke-width={2} aria-hidden="true" /></a
-    >
-  </nav>
-  <p class="mt-10 text-xs text-(--text-subtle)">
-    © 2026 <a
-      href="https://iqfareez.com"
-      target="_blank"
-      rel="noopener noreferrer"
-      class="hover:text-(--accent)">Muhammad Fareez</a
-    >. All rights reserved.
-  </p>
-</footer>
+<Footer />
 
 <script>
   const phoneCard = document.querySelector<HTMLElement>("[data-phone-card]");
