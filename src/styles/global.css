@@ -12,7 +12,6 @@
   --text-muted: #b7bbc6;
   --text-subtle: #70829f;
   --accent: #12c5db;
-  --grid: rgb(255 255 255 / 4%);
 }
 
 :root[data-theme="light"] {
@@ -23,18 +22,11 @@
   --text-muted: #475569;
   --text-subtle: #64748b;
   --accent: #008891;
-  --grid: rgb(15 23 42 / 5%);
 }
 
 html { scroll-behavior: smooth; }
 body { margin: 0; background: var(--page-bg); color: var(--text-primary); font-family: var(--font-poppins), sans-serif; }
 a:focus-visible, button:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
-
-.hero-grid {
-  background-image: linear-gradient(to right, var(--grid) 1px, transparent 1px), linear-gradient(to bottom, var(--grid) 1px, transparent 1px);
-  background-size: 200px 200px;
-  mask-image: linear-gradient(to bottom, black 0%, black 70%, transparent 100%);
-}
 
 .hero-glow {
   background: radial-gradient(ellipse at 65% 38%, rgb(75 103 169 / 19%), transparent 44%), radial-gradient(ellipse at 91% 37%, rgb(73 62 157 / 20%), transparent 37%);
