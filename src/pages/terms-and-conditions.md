@@ -1,5 +1,5 @@
 ---
-layout: ../layouts/LegalLayout.astro
+layout: ../layouts/ContentLayout.astro
 title: Terms & Conditions
 description: Terms and Conditions for the Malaysia Prayer Time app.
 ---

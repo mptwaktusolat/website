@@ -1,5 +1,5 @@
 ---
-layout: ../layouts/LegalLayout.astro
+layout: ../layouts/ContentLayout.astro
 title: Privacy Policy
 description: Privacy Policy for the Malaysia Prayer Time app.
 ---
