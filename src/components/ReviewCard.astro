@@ -21,8 +21,9 @@ const {
 ---
 
 <figure
+  data-review-card
   class:list={[
-    "flex flex-col justify-between rounded-2xl bg-(--card-bg) p-6 shadow-lg shadow-black/5",
+    "review-card flex flex-col justify-between rounded-2xl bg-(--card-bg) p-6 shadow-lg shadow-black/5",
     prominent ? "min-h-[306px] lg:p-12" : "min-h-[180px]",
     className,
   ]}
@@ -68,3 +69,83 @@ const {
     </div>
   </figcaption>
 </figure>
+
+<style>
+  .review-card {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .review-card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    pointer-events: none;
+    opacity: 0;
+    background-color: color-mix(in srgb, var(--accent) 14%, transparent);
+    /* for noise effect */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='grain'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3CfeComponentTransfer%3E%3CfeFuncA type='linear' slope='.18'/%3E%3C/feComponentTransfer%3E%3C/filter%3E%3Cpath fill='white' filter='url(%23grain)' d='M0 0h160v160H0z'/%3E%3C/svg%3E");
+    mask-image:
+      radial-gradient(
+        280px circle at var(--spotlight-x, 50%) var(--spotlight-y, 50%),
+        black,
+        transparent 75%
+      ),
+      linear-gradient(to bottom, black 20%, rgb(0 0 0 / 20%) 100%);
+    mask-composite: intersect;
+    transition: opacity 220ms ease;
+  }
+
+  @media (hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference) {
+    .review-card[data-spotlight-active]::before {
+      opacity: 1;
+    }
+  }
+</style>
+
+<script>
+  const spotlightEnabled = window.matchMedia(
+    "(hover: hover) and (pointer: fine) and (prefers-reduced-motion: no-preference)",
+  );
+  const initializedCards = new WeakSet<HTMLElement>();
+
+  function initReviewSpotlights() {
+    document
+      .querySelectorAll<HTMLElement>("[data-review-card]")
+      .forEach((card) => {
+        if (initializedCards.has(card)) return;
+        initializedCards.add(card);
+
+        let frame = 0;
+        card.addEventListener("pointermove", (event) => {
+          if (!spotlightEnabled.matches || event.pointerType === "touch")
+            return;
+          cancelAnimationFrame(frame);
+          frame = requestAnimationFrame(() => {
+            const bounds = card.getBoundingClientRect();
+            card.style.setProperty(
+              "--spotlight-x",
+              `${event.clientX - bounds.left}px`,
+            );
+            card.style.setProperty(
+              "--spotlight-y",
+              `${event.clientY - bounds.top}px`,
+            );
+            card.toggleAttribute("data-spotlight-active", true);
+          });
+        });
+
+        const reset = () => {
+          cancelAnimationFrame(frame);
+          card.removeAttribute("data-spotlight-active");
+        };
+        card.addEventListener("pointerleave", reset);
+        card.addEventListener("pointercancel", reset);
+      });
+  }
+
+  initReviewSpotlights();
+  document.addEventListener("astro:page-load", initReviewSpotlights);
+</script>
